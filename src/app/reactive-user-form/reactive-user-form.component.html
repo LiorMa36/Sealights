@@ -1,0 +1,16 @@
+<div class="form-container">
+  <form [formGroup]="userForm">
+    <app-reactive-user-info formControlName="userInfo"></app-reactive-user-info>
+    <app-reactive-addresses
+      formControlName="addresses"
+    ></app-reactive-addresses>
+    <button
+      mat-stroked-button
+      (click)="save()"
+      type="reset"
+      [disabled]="!userForm.valid"
+    >
+      Save
+    </button>
+  </form>
+</div>

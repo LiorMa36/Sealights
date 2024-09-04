@@ -1,0 +1,30 @@
+.addresses {
+    display: flex;
+    flex-wrap: wrap;
+}
+.form {
+    display: block;
+}
+.form-field {
+    display: block;
+    padding: 0.3rem;
+}
+
+.btn-form-field {
+    color: white;
+    display: block;
+    padding: 0.3rem;
+    margin: 0 0 0.5rem 0;
+    cursor: pointer;
+}
+
+.city-btn {
+    align-self: center;
+}
+
+.add {
+    background-color: blue;
+}
+.remove {
+    background-color: red;
+}

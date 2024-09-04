@@ -1,0 +1,74 @@
+<section class="addresses">
+  @for (address of addressesFormArray.controls; let i = $index; track
+  castToFormGroup(address)) {
+  <section class="form" [formGroup]="castToFormGroup(address)">
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Address Name</mat-label>
+      <input
+        matInput
+        formControlName="name"
+        placeholder="Enter Address Name"
+        required
+      />
+      <!-- <mat-hint>Hint</mat-hint> -->
+    </mat-form-field>
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Select Country</mat-label>
+      <mat-select formControlName="countryId" [compareWith]="compareByValue">
+        @for (country of countries$ | async; track country.id) {
+        <mat-option [value]="country.id">{{ country.name }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Select city</mat-label>
+      <mat-select formControlName="cityId" [compareWith]="compareByValue">
+        @for (city of
+        getCitiesByCountryId(castToFormGroup(address).get('countryId')?.value);
+        track city.name) {
+        <mat-option [value]="city.name">{{ city.name }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Street</mat-label>
+      <input
+        matInput
+        formControlName="street"
+        placeholder="Enter Street Name"
+        required
+      />
+      <!-- <mat-hint>Hint</mat-hint> -->
+    </mat-form-field>
+    <button
+      mat-raised-button
+      class="btn-form-field"
+      type="reset"
+      (click)="removeAddress(i)"
+      [disabled]="addressesFormArray.length === 1"
+    >
+      Remove address
+    </button>
+    @if(i === 0) {
+    <button
+      mat-raised-button
+      class="btn-form-field"
+      type="button"
+      (click)="addAddress()"
+      [disabled]="!addressesFormArray.valid"
+    >
+      Add address
+    </button>
+    }
+  </section>
+
+  <button
+    mat-raised-button
+    class="city-btn"
+    type="button"
+    (click)="addCity(castToFormGroup(address).get('countryId')?.value)"
+  >
+    Add City
+  </button>
+  }
+</section>
