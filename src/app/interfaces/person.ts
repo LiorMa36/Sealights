@@ -19,7 +19,7 @@ export interface PersonUser {
 }
 
 export interface Address {
-  name: 'Home' | 'Work' | 'Other';
+  name: string;
   countryId: number;
   cityId: number;
   street: string;
